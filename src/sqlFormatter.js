@@ -2,6 +2,7 @@ import Db2Formatter from './languages/Db2Formatter';
 import N1qlFormatter from './languages/N1qlFormatter';
 import PlSqlFormatter from './languages/PlSqlFormatter';
 import StandardSqlFormatter from './languages/StandardSqlFormatter';
+import SpannerFormatter from './languages/SpannerFormatter';
 
 /**
  * Format whitespace in a query to make it easier to read.
@@ -23,6 +24,8 @@ export const format = (query, cfg = {}) => {
       return new N1qlFormatter(cfg).format(query);
     case 'pl/sql':
       return new PlSqlFormatter(cfg).format(query);
+    case 'spanner':
+      return new SpannerFormatter(cfg).format(query);
     case 'sql':
     case undefined:
       return new StandardSqlFormatter(cfg).format(query);
